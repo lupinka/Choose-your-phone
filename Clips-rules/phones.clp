@@ -13,7 +13,7 @@
   (declare (salience 10000))
   =>
   (set-fact-duplication TRUE)
-  (focus CHOOSE-QUALITIES WINES))
+  (focus CHOOSE-QUALITIES PHONES))
 
 (defrule MAIN::combine-certainties ""
   (declare (salience 100)
