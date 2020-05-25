@@ -1,3 +1,16 @@
+
+;;;======================================================
+;;;   Phone Expert Sample Problem
+;;;
+;;;     WINEX: The WINe EXpert system.
+;;;     This example selects an appropriate phone
+;;;     to drink with a meal.
+;;;
+;;;     CLIPS Version 6.4 Example
+;;;
+;;;     For use with the CLIPSJNI
+;;;======================================================
+
 (defmodule MAIN (export ?ALL))
 
 ;;*****************
@@ -24,7 +37,7 @@
   =>
   (retract ?rem1)
   (modify ?rem2 (certainty (/ (- (* 100 (+ ?per1 ?per2)) (* ?per1 ?per2)) 100))))
-
+  
  
 ;;******************
 ;; The RULES module
@@ -84,7 +97,7 @@
   (assert (attribute (name ?attribute) (value ?value) (certainty ?c1))))
 
 ;;*******************************
-;;* CHOOSE PHONE QUALITIES RULES *
+;;* CHOOSE WINE QUALITIES RULES *
 ;;*******************************
 
 (defmodule CHOOSE-QUALITIES (import RULES ?ALL)
@@ -95,79 +108,54 @@
 (deffacts the-phone-rules
 
   ; Rules for picking the best body
-
-  (rule (if preffered_system is android)
+  (rule (if preffered-system is android)
         (then best-system is android))
+  (rule (if preferred-system is unknown)
+        (then best-system is android with certainty 20 and
+               best-system is iphone with certainty 20))
 
-  (rule (if preffered_dual-sim is yes)
+  (rule (if preffered-dual-sim is yes)
         (then best-dual-sim is yes))
-
-  (rule (if preffered-screen is big)
-        (then >= best-screen 5.5))
-  (rule (if preffered-screen is small)
-        (then < best-screen 5.5))
+  (rule (if preffered-dual-sim is no)
+        (then best-dual-sim is no))
+  (rule (if preferred-dual-sim is unknown)
+        (then best-dual-sim is yes with certainty 20 and
+               best-dual-sim is no with certainty 20))
 )
+
+;;************************
+;;* WINE SELECTION RULES *
+;;************************
 
 (defmodule PHONES (import MAIN ?ALL)
                  (export deffunction get-phone-list))
 
 (deffacts any-attributes
-  (attribute (name best-camera_back) (value any))
-  (attribute (name best-camera_front) (value any))
   (attribute (name best-system) (value any))
-  (attribute (name best-screen_size) (value any))
   (attribute (name best-dual-sim) (value any))
-  (attribute (name best-baterry) (value any))
-  (attribute (name best-memory) (value any))
-  (attribute (name best-price) (value any))
-  (attribute (name best-ram) (value any))
-)
+ )
 
 (deftemplate PHONES::phone
   (slot name (default ?NONE))
-  (slot camera_back (default any))
-  (slot camera_front (default any))
-  (slot system (default any))
-  (slot price(default any))
-  (slot ram (default any))
-  (slot screen_size (default any))
-  (multislot memory(default any))
-  (slot baterry(default any))
-  (slot dual-sim(default any))
-  )
+  (multislot system (default any))
+  (multislot dual-sim(default any))
+)
+
 
 (deffacts PHONES::the-phone-list 
-  (phone (name "Xiaomi Redmi Note 8 Pro") (camera_back 64) (camera_front 20) (system android) (price 999) (ram 64) 
-  (screen_size 6.53) (memory 128) (baterry 4500) (dual-sim 1))
-  (phone (name "Samsung Galaxy A10") (camera_back 13) (camera_front 5) (system android) (price 699) (ram 3) 
-  (screen_size 6.2) (memory 32) (baterry 3400) (dual-sim 1))
+    (phone (name "Xiaomi Redmi Note 8 Pro") (system android) (dual-sim yes))
+    (phone (name "Samsung Galaxy A10") (system android) (dual-sim yes))
 )
   
 (defrule PHONES::generate-phones
   (phone (name ?name)
-        (camera_back ?cb) 
-        (camera_front ?cf) 
-        (system ?sys) 
-        (screen_size ?size) 
-        (dual-sim ?ds)
-        (baterry ?bat) 
-        (memory $? ?mem $?) 
-        (price ?pr) 
-        (ram ?ram))
-  (attribute (name best-camera_back) (value ?cb) (certainty ?certainty-1))
-  (attribute (name best-camera_front) (value ?cf) (certainty ?certainty-2))
-  (attribute (name best-system) (value ?sys) (certainty ?certainty-3))
-  (attribute (name best-screen_size) (value ?size) (certainty ?certainty-4))
-  (attribute (name best-dual-sim) (value ?ds) (certainty ?certainty-5))
-  (attribute (name best-baterry) (value ?bat) (certainty ?certainty-6))
-  (attribute (name best-memory) (value ?mem) (certainty ?certainty-7))
-  (attribute (name best-price) (value ?pr) (certainty ?certainty-8))
-  (attribute (name best-ram) (value ?ram) (certainty ?certainty-9))
+        (system $? ?c $?)
+        (dual-sim $? ?s $?))
+  (attribute (name best-system) (value ?c) (certainty ?certainty-1))
+  (attribute (name best-dual-sim) (value ?s) (certainty ?certainty-2))
   =>
   (assert (attribute (name phone) (value ?name)
-                     (certainty (min ?certainty-1 ?certainty-2 ?certainty-3 ?certainty-4 ?certainty-5 
-                     ?certainty-6 ?certainty-7 ?certainty-8 ?certainty-9)))
-  ))
+                     (certainty (min ?certainty-1 ?certainty-2)))))
 
 (deffunction PHONES::phone-sort (?w1 ?w2)
    (< (fact-slot-value ?w1 certainty)
@@ -175,6 +163,8 @@
       
 (deffunction PHONES::get-phone-list ()
   (bind ?facts (find-all-facts ((?f attribute))
-                               (and (eq ?f:name phone)
-                                    (>= ?f:certainty 20))))
+                              (and (eq ?f:name phone)
+                              (>= ?f:certainty 20))))
   (sort phone-sort ?facts))
+  
+

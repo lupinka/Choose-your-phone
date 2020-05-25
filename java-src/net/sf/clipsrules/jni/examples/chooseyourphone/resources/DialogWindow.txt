@@ -1,0 +1,10 @@
+         CLIPS (6.31 6/12/19)
+CLIPS> (rule (if preffered_system is android)
+        (then best-system is android))
+
+[EXPRNPSR3] Missing function declaration for rule.
+CLIPS> rule (if preffered_system is android)
+        (then best-system is android)rule
+CLIPS> ls
+ls
+CLIPS> 

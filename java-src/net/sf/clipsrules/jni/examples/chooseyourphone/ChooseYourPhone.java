@@ -23,17 +23,14 @@ class ChooseYourPhone implements ActionListener {
     DefaultTableModel phoneList;
 
     JComboBox<String> preferredSystem;
-    JComboBox<String> preferredScreen;
     JComboBox<String> preferredDualSim;
 
     JLabel jlab;
 
     String PreferredSystemNames[] = {"Don't Care", "Android"};
-    String PreferredScreenNames[] = {"Don't Care", "Small", "Big"};
     String PreferredDualSimNames[] = {"Don't Care", "Yes"};
 
     String preferredSystemChoices[] = new String[2];
-    String preferredScreenChoices[] = new String[3];
     String preferredDualSimChoices[] = new String[2];
 
     ResourceBundle phoneResources;
@@ -76,10 +73,6 @@ class ChooseYourPhone implements ActionListener {
         preferredDualSimChoices[0] = phoneResources.getString("Don'tCare");
         preferredDualSimChoices[1] = phoneResources.getString("Yes");
 
-        preferredScreenChoices[0] = phoneResources.getString("Don'tCare");
-        preferredScreenChoices[1] = phoneResources.getString("Big");
-        preferredScreenChoices[2] = phoneResources.getString("Small");
-
 
         /*===================================*/
         /* Create a new JFrame container and */
@@ -117,11 +110,6 @@ class ChooseYourPhone implements ActionListener {
         preferredSystem = new JComboBox<String>(preferredSystemChoices);
         preferencesPanel.add(preferredSystem);
         preferredSystem.addActionListener(this);
-
-        preferencesPanel.add(new JLabel(phoneResources.getString("ScreenLabel")));
-        preferredScreen = new JComboBox<String>(preferredScreenChoices);
-        preferencesPanel.add(preferredScreen);
-        preferredScreen.addActionListener(this);
 
         preferencesPanel.add(new JLabel(phoneResources.getString("DualSimLabel")));
         preferredDualSim = new JComboBox<String>(preferredDualSimChoices);
@@ -194,7 +182,6 @@ class ChooseYourPhone implements ActionListener {
 
         preferredSystem.setSelectedIndex(0);
         preferredDualSim.setSelectedIndex(0);
-        preferredScreen.setSelectedIndex(0);
 
         /*========================*/
         /* Load the wine program. */
@@ -258,17 +245,7 @@ class ChooseYourPhone implements ActionListener {
         if (item.equals("Android")) {
             clips.assertString("(attribute (name preferred-system) (value android))");
         } else {
-            clips.assertString("(attribute (name preferred-color) (value unknown))");
-        }
-
-        item = PreferredScreenNames[preferredScreen.getSelectedIndex()];
-
-        if(item.equals("Big")){
-            clips.assertString("(attribute (name preferred-screen) (value big))");
-        } else if(item.equals("Small")){
-            clips.assertString("(attribute (name preferred-screen) (value small))");
-        }else{
-            clips.assertString("(attribute (name preferred-screen) (value unknown))");
+            clips.assertString("(attribute (name preferred-system) (value unknown))");
         }
 
         item = PreferredDualSimNames[preferredDualSim.getSelectedIndex()];
