@@ -108,15 +108,17 @@
 (deffacts the-phone-rules
 
   ; Rules for picking the best body
-  (rule (if preffered-system is android)
+  (rule (if preferred-system is android)
         (then best-system is android))
+  (rule (if preferred-system is iphone)
+        (then best-system is iphone))
   (rule (if preferred-system is unknown)
         (then best-system is android with certainty 20 and
                best-system is iphone with certainty 20))
 
-  (rule (if preffered-dual-sim is yes)
+  (rule (if preferred-dual-sim is yes)
         (then best-dual-sim is yes))
-  (rule (if preffered-dual-sim is no)
+  (rule (if preferred-dual-sim is no)
         (then best-dual-sim is no))
   (rule (if preferred-dual-sim is unknown)
         (then best-dual-sim is yes with certainty 20 and
@@ -164,7 +166,7 @@
 (deffunction PHONES::get-phone-list ()
   (bind ?facts (find-all-facts ((?f attribute))
                               (and (eq ?f:name phone)
-                              (>= ?f:certainty 20))))
+                              (>= ?f:certainty 0))))
   (sort phone-sort ?facts))
   
 
