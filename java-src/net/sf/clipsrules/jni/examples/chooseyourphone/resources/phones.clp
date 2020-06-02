@@ -1,16 +1,3 @@
-
-;;;======================================================
-;;;   Phone Expert Sample Problem
-;;;
-;;;     WINEX: The WINe EXpert system.
-;;;     This example selects an appropriate phone
-;;;     to drink with a meal.
-;;;
-;;;     CLIPS Version 6.4 Example
-;;;
-;;;     For use with the CLIPSJNI
-;;;======================================================
-
 (defmodule MAIN (export ?ALL))
 
 ;;*****************
@@ -97,7 +84,7 @@
   (assert (attribute (name ?attribute) (value ?value) (certainty ?c1))))
 
 ;;*******************************
-;;* CHOOSE WINE QUALITIES RULES *
+;;* CHOOSE PHONE QUALITIES RULES *
 ;;*******************************
 
 (defmodule CHOOSE-QUALITIES (import RULES ?ALL)
@@ -107,7 +94,6 @@
 
 (deffacts the-phone-rules
 
-  ; Rules for picking the best body
   (rule (if preferred-system is android)
         (then best-system is android))
   (rule (if preferred-system is ios)
@@ -123,10 +109,18 @@
   (rule (if preferred-dual-sim is unknown)
         (then best-dual-sim is yes with certainty 20 and
                best-dual-sim is no with certainty 20))
+
+  (rule (if preferred-screen-size is big)
+        (then best-screen-size is big))
+  (rule (if preferred-screen-size is small)
+        (then best-screen-size is small))
+  (rule (if preferred-screen-size is unknown)
+        (then best-screen-size is big with certainty 20 and
+                 best-screen-size is small with certainty 20))
 )
 
 ;;************************
-;;* WINE SELECTION RULES *
+;;* PHONE SELECTION RULES *
 ;;************************
 
 (defmodule PHONES (import MAIN ?ALL)
@@ -135,30 +129,38 @@
 (deffacts any-attributes
   (attribute (name best-system) (value any))
   (attribute (name best-dual-sim) (value any))
+  (attribute (name best-screen-size) (value any))
  )
 
 (deftemplate PHONES::phone
   (slot name (default ?NONE))
   (multislot system (default any))
   (multislot dual-sim(default any))
+  (multislot screen-size(default any))
+  (multislot size(default any))
 )
 
 
-(deffacts PHONES::the-phone-list 
-    (phone (name "Xiaomi Redmi Note 8 Pro") (system android) (dual-sim yes))
-    (phone (name "Samsung Galaxy A10") (system android) (dual-sim yes))
-    (phone (name "Apple iPhone 6s") (system ios) (dual-sim no))
+(deffacts PHONES::the-phone-list
+    (phone (name "Xiaomi Redmi Note 8 Pro") (system android) (dual-sim yes) (screen-size 6.53))
+    (phone (name "Samsung Galaxy A10") (system android) (dual-sim yes) (screen-size 6.2))
+    (phone (name "Apple iPhone 6s") (system ios) (dual-sim no) (screen-size 4.7))
 )
-  
+
 (defrule PHONES::generate-phones
   (phone (name ?name)
         (system $? ?c $?)
-        (dual-sim $? ?s $?))
+        (dual-sim $? ?s $?)
+        (screen-size $? ?scr $?)
+        (size $? ?si $?))
+
+
   (attribute (name best-system) (value ?c) (certainty ?certainty-1))
   (attribute (name best-dual-sim) (value ?s) (certainty ?certainty-2))
+  (attribute (name best-screen-size) (value ?si) (certainty ?certainty-3))
   =>
   (assert (attribute (name phone) (value ?name)
-                     (certainty (min ?certainty-1 ?certainty-2)))))
+                     (certainty (min ?certainty-1 ?certainty-2 ?certainty-3)))))
 
 (deffunction PHONES::phone-sort (?w1 ?w2)
    (< (fact-slot-value ?w1 certainty)
