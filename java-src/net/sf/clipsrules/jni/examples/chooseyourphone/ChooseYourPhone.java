@@ -27,10 +27,10 @@ class ChooseYourPhone implements ActionListener {
 
     JLabel jlab;
 
-    String PreferredSystemNames[] = {"Don't Care", "Android"};
+    String PreferredSystemNames[] = {"Don't Care", "Android", "iOS"};
     String PreferredDualSimNames[] = {"Don't Care", "Yes"};
 
-    String preferredSystemChoices[] = new String[2];
+    String preferredSystemChoices[] = new String[3];
     String preferredDualSimChoices[] = new String[2];
 
     ResourceBundle phoneResources;
@@ -69,6 +69,7 @@ class ChooseYourPhone implements ActionListener {
 
         preferredSystemChoices[0] = phoneResources.getString("Don'tCare");
         preferredSystemChoices[1] = phoneResources.getString("Android");
+        preferredSystemChoices[2] = phoneResources.getString("iOS");
 
         preferredDualSimChoices[0] = phoneResources.getString("Don'tCare");
         preferredDualSimChoices[1] = phoneResources.getString("Yes");
@@ -244,7 +245,11 @@ class ChooseYourPhone implements ActionListener {
 
         if (item.equals("Android")) {
             clips.assertString("(attribute (name preferred-system) (value android))");
-        } else {
+        }
+        else if (item.equals("iOS")) {
+            clips.assertString("(attribute (name preferred-system) (value ios))");
+        }
+        else {
             clips.assertString("(attribute (name preferred-system) (value unknown))");
         }
 

@@ -110,11 +110,11 @@
   ; Rules for picking the best body
   (rule (if preferred-system is android)
         (then best-system is android))
-  (rule (if preferred-system is iphone)
-        (then best-system is iphone))
+  (rule (if preferred-system is ios)
+        (then best-system is ios))
   (rule (if preferred-system is unknown)
         (then best-system is android with certainty 20 and
-               best-system is iphone with certainty 20))
+               best-system is ios with certainty 20))
 
   (rule (if preferred-dual-sim is yes)
         (then best-dual-sim is yes))
@@ -147,6 +147,7 @@
 (deffacts PHONES::the-phone-list 
     (phone (name "Xiaomi Redmi Note 8 Pro") (system android) (dual-sim yes))
     (phone (name "Samsung Galaxy A10") (system android) (dual-sim yes))
+    (phone (name "Apple iPhone 6s") (system ios) (dual-sim no))
 )
   
 (defrule PHONES::generate-phones
