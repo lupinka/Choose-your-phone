@@ -71,10 +71,6 @@ class ChooseYourPhone implements ActionListener {
         preferredSystemChoices[1] = phoneResources.getString("Android");
         preferredSystemChoices[2] = phoneResources.getString("iOS");
 
-        preferredDualSimChoices[0] = phoneResources.getString("Don'tCare");
-        preferredDualSimChoices[1] = phoneResources.getString("Yes");
-
-
         /*===================================*/
         /* Create a new JFrame container and */
         /* assign a layout manager to it.    */
@@ -182,11 +178,8 @@ class ChooseYourPhone implements ActionListener {
         /*===================================================*/
 
         preferredSystem.setSelectedIndex(0);
-        preferredDualSim.setSelectedIndex(0);
-
-        /*========================*/
-        /* Load the wine program. */
-        /*========================*/
+        PreferredScreen.setSelectedIndex(0);
+        PreferredPrice.setSelectedIndex(0);
 
         clips = new Environment();
 
@@ -253,10 +246,8 @@ class ChooseYourPhone implements ActionListener {
             clips.assertString("(attribute (name preferred-system) (value unknown))");
         }
 
-        item = PreferredDualSimNames[preferredDualSim.getSelectedIndex()];
-
-
-        if (item.equals("Yes")) {
+    /*checkbox rules*/
+        if (preferredDualSim.isSelected()) {
             clips.assertString("(attribute (name preferred-dual-sim) (value yes))");
         } else {
             clips.assertString("(attribute (name preferred-dual-sim) (value unknown))");
