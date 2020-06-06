@@ -145,6 +145,10 @@
     (phone (name "Xiaomi Redmi Note 8 Pro") (system android) (dual-sim yes) (screen-size 6.53))
     (phone (name "Samsung Galaxy A10") (system android) (dual-sim yes) (screen-size 6.2))
     (phone (name "Apple iPhone 6s") (system ios) (dual-sim no) (screen-size 4.7))
+    (phone (name "Nokia 5.1 Plus") (system android) (dual-sim yes) (screen-size 5.8))
+    (phone (name "Cavion Base 5.0 LTE") (system android) (dual-sim yes) (screen-size 5.0))
+    (phone (name "Huawei Y5") (system android) (dual-sim yes) (screen-size 5.45))
+    (phone (name "Apple iPhone SE") (system ios) (dual-sim yes) (screen-size 4.8))
 )
 
 (defrule PHONES::check-phones-screen
