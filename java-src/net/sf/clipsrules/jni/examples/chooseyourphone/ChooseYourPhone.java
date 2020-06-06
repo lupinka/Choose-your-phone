@@ -23,15 +23,28 @@ class ChooseYourPhone implements ActionListener {
     DefaultTableModel phoneList;
 
     JComboBox<String> preferredSystem;
-    JComboBox<String> preferredDualSim;
+    JComboBox<String> PreferredScreen;
+    JComboBox<String> PreferredPrice;
+
+    JCheckBox preferredDualSim;
+    JCheckBox PreferredForGames;
+    JCheckBox PreferredForPhotos;
+    JCheckBox PreferredBatteryCapacity;
+    JCheckBox PreferredDifficultConditions;
+    JCheckBox PreferredMultipleApps;
+    JCheckBox PreferredBigMemory;
+    JCheckBox PreferredForWatching;
+
 
     JLabel jlab;
 
-    String PreferredSystemNames[] = {"Don't Care", "Android", "iOS"};
-    String PreferredDualSimNames[] = {"Don't Care", "Yes"};
+    String[] PreferredSystemNames = {"Don't Care", "Android", "iOS"};
+    String[] PreferredScreenNames = {"Don't Care", "Less than 5,5'", "More than 5,5"};
+    String[] PreferredPriceNames = {"Don't Care", "Less than 1000", "1000 to 2000", "More than 2000"};
 
-    String preferredSystemChoices[] = new String[3];
-    String preferredDualSimChoices[] = new String[2];
+    String[] preferredSystemChoices = new String[3];
+    String[] PreferredScreenChoices = new String[3];
+    String[] PreferredPriceChoices = new String[4];
 
     ResourceBundle phoneResources;
 
@@ -40,7 +53,7 @@ class ChooseYourPhone implements ActionListener {
     boolean isExecuting = false;
     Thread executionThread;
 
-    class WeightCellRenderer extends JProgressBar implements TableCellRenderer {
+    static class WeightCellRenderer extends JProgressBar implements TableCellRenderer {
         public WeightCellRenderer() {
             super(JProgressBar.HORIZONTAL, 0, 100);
             setStringPainted(false);
@@ -71,30 +84,28 @@ class ChooseYourPhone implements ActionListener {
         preferredSystemChoices[1] = phoneResources.getString("Android");
         preferredSystemChoices[2] = phoneResources.getString("iOS");
 
-        /*===================================*/
+        PreferredScreenChoices[0] = phoneResources.getString("Don'tCare");
+        PreferredScreenChoices[1] = phoneResources.getString("Less5");
+        PreferredScreenChoices[2] = phoneResources.getString("More5");
+
+        PreferredPriceChoices[0] = phoneResources.getString("Don'tCare");
+        PreferredPriceChoices[1] = phoneResources.getString("Less1000");
+        PreferredPriceChoices[2] = phoneResources.getString("1000to2000");
+        PreferredPriceChoices[3] = phoneResources.getString("More2000");
+
+
         /* Create a new JFrame container and */
         /* assign a layout manager to it.    */
-        /*===================================*/
-
         jfrm = new JFrame(phoneResources.getString("ChooseYourPhone"));
         jfrm.getContentPane().setLayout(new BoxLayout(jfrm.getContentPane(), BoxLayout.Y_AXIS));
 
-        /*=================================*/
         /* Give the frame an initial size. */
-        /*=================================*/
-
         jfrm.setSize(480, 390);
 
-        /*=============================================================*/
         /* Terminate the program when the user closes the application. */
-        /*=============================================================*/
-
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /*===============================*/
         /* Create the preferences panel. */
-        /*===============================*/
-
         JPanel preferencesPanel = new JPanel();
         GridLayout theLayout = new GridLayout(3, 2);
         preferencesPanel.setLayout(theLayout);
@@ -104,45 +115,86 @@ class ChooseYourPhone implements ActionListener {
                 TitledBorder.ABOVE_TOP));
 
         preferencesPanel.add(new JLabel(phoneResources.getString("SystemLabel")));
-        preferredSystem = new JComboBox<String>(preferredSystemChoices);
+        preferredSystem = new JComboBox<>(preferredSystemChoices);
         preferencesPanel.add(preferredSystem);
         preferredSystem.addActionListener(this);
 
-        preferencesPanel.add(new JLabel(phoneResources.getString("DualSimLabel")));
-        preferredDualSim = new JComboBox<String>(preferredDualSimChoices);
-        preferencesPanel.add(preferredDualSim);
-        preferredDualSim.addActionListener(this);
+        preferencesPanel.add(new JLabel(phoneResources.getString("ScreenLabel")));
+        PreferredScreen = new JComboBox<>(PreferredScreenChoices);
+        preferencesPanel.add(PreferredScreen);
+        PreferredScreen.addActionListener(this);
+
+        preferencesPanel.add(new JLabel(phoneResources.getString("PriceLabel")));
+        PreferredPrice = new JComboBox<>(PreferredPriceChoices);
+        preferencesPanel.add(PreferredPrice);
+        PreferredPrice.addActionListener(this);
 
 
-        /*========================*/
-        /* Create the meal panel. */
-        /*========================*/
-
-        JPanel mealPanel = new JPanel();
-        theLayout = new GridLayout(3, 2);
-        mealPanel.setLayout(theLayout);
-        mealPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-                phoneResources.getString("MealTitle"),
+        /* Create the second panel. */
+        JPanel secondPanel = new JPanel();
+        theLayout = new GridLayout(8, 2);
+        secondPanel.setLayout(theLayout);
+        secondPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+                phoneResources.getString("SecondTitle"),
                 TitledBorder.CENTER,
                 TitledBorder.ABOVE_TOP));
 
+//        secondPanel.add(new JLabel(phoneResources.getString("DualSimLabel")));
+//        preferredDualSim = new JComboBox<>(preferredDualSimChoices);
+//        secondPanel.add(preferredDualSim);
+//        preferredDualSim.addActionListener(this);
 
-        /*==============================================*/
+        secondPanel.add(new JLabel(phoneResources.getString("DualSimLabel")));
+        preferredDualSim = new JCheckBox();
+        secondPanel.add(preferredDualSim);
+        preferredDualSim.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("ForGamesLabel")));
+        PreferredForGames = new JCheckBox();
+        secondPanel.add(PreferredForGames);
+        PreferredForGames.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("ForPhotosLabel")));
+        PreferredForPhotos = new JCheckBox();
+        secondPanel.add(PreferredForPhotos);
+        PreferredForPhotos.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("BatteryLabel")));
+        PreferredBatteryCapacity = new JCheckBox();
+        secondPanel.add(PreferredBatteryCapacity);
+        PreferredBatteryCapacity.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("DifficultConditionsLabel")));
+        PreferredDifficultConditions = new JCheckBox();
+        secondPanel.add(PreferredDifficultConditions);
+        PreferredDifficultConditions.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("MultipleAppsLabel")));
+        PreferredMultipleApps = new JCheckBox();
+        secondPanel.add(PreferredMultipleApps);
+        PreferredMultipleApps.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("MemoryLabel")));
+        PreferredBigMemory = new JCheckBox();
+        secondPanel.add(PreferredBigMemory);
+        PreferredBigMemory.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("ForWatchingLabel")));
+        PreferredForWatching = new JCheckBox();
+        secondPanel.add(PreferredForWatching);
+        PreferredForWatching.addActionListener(this);
+
+
         /* Create a panel including the preferences and */
-        /* meal panels and add it to the content pane.  */
-        /*==============================================*/
-
+        /* second panels and add it to the content pane.  */
         JPanel choicesPanel = new JPanel();
         choicesPanel.setLayout(new FlowLayout());
         choicesPanel.add(preferencesPanel);
-        choicesPanel.add(mealPanel);
+        choicesPanel.add(secondPanel);
 
         jfrm.getContentPane().add(choicesPanel);
 
-        /*==================================*/
         /* Create the recommendation panel. */
-        /*==================================*/
-
         phoneList = new DefaultTableModel();
 
         phoneList.setDataVector(new Object[][]{},
@@ -158,7 +210,7 @@ class ChooseYourPhone implements ActionListener {
 
         table.setCellSelectionEnabled(false);
 
-        ChooseYourPhone.WeightCellRenderer renderer = this.new WeightCellRenderer();
+        ChooseYourPhone.WeightCellRenderer renderer = new WeightCellRenderer();
         renderer.setBackground(table.getBackground());
 
         table.getColumnModel().getColumn(1).setCellRenderer(renderer);
@@ -167,20 +219,15 @@ class ChooseYourPhone implements ActionListener {
 
         table.setPreferredScrollableViewportSize(new Dimension(450, 210));
 
-        /*===================================================*/
         /* Add the recommendation panel to the content pane. */
-        /*===================================================*/
-
         jfrm.getContentPane().add(pane);
 
-        /*===================================================*/
         /* Initially select the first item in each ComboBox. */
-        /*===================================================*/
-
         preferredSystem.setSelectedIndex(0);
         PreferredScreen.setSelectedIndex(0);
         PreferredPrice.setSelectedIndex(0);
 
+        /* Load the phone program. */
         clips = new Environment();
 
         try {
@@ -196,22 +243,14 @@ class ChooseYourPhone implements ActionListener {
             e.printStackTrace();
         }
 
-        /*====================*/
         /* Display the frame. */
-        /*====================*/
-
         jfrm.pack();
         jfrm.setVisible(true);
     }
 
-    /*########################*/
     /* ActionListener Methods */
-    /*########################*/
 
-    /*******************/
     /* actionPerformed */
-
-    /*******************/
     public void actionPerformed(
             ActionEvent ae) {
         if (clips == null) return;
@@ -223,10 +262,7 @@ class ChooseYourPhone implements ActionListener {
         }
     }
 
-    /***********/
-    /* runWine */
-
-    /***********/
+    /* runPhone */
     private void runPhone() throws Exception {
         String item;
 
@@ -253,26 +289,23 @@ class ChooseYourPhone implements ActionListener {
             clips.assertString("(attribute (name preferred-dual-sim) (value unknown))");
         }
 
-        Runnable runThread =
-                new Runnable() {
-                    public void run() {
-                        try {
-                            clips.run();
-                        } catch (CLIPSException e) {
-                            e.printStackTrace();
-                        }
 
-                        SwingUtilities.invokeLater(
-                                new Runnable() {
-                                    public void run() {
-                                        try {
-                                            updatePhones();
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
+        Runnable runThread =
+                () -> {
+                    try {
+                        clips.run();
+                    } catch (CLIPSException e) {
+                        e.printStackTrace();
                     }
+
+                    SwingUtilities.invokeLater(
+                            () -> {
+                                try {
+                                    updatePhones();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
                 };
 
         isExecuting = true;
@@ -282,10 +315,7 @@ class ChooseYourPhone implements ActionListener {
         executionThread.start();
     }
 
-    /***************/
-    /* updateWines */
-
-    /***************/
+    /* updatePhones */
     private void updatePhones() throws Exception {
         String evalStr = "(PHONES::get-phone-list)";
 
@@ -300,7 +330,7 @@ class ChooseYourPhone implements ActionListener {
 
             String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
 
-            phoneList.addRow(new Object[]{phoneName, new Integer(certainty)});
+            phoneList.addRow(new Object[]{phoneName, certainty});
         }
 
         jfrm.pack();
@@ -310,21 +340,11 @@ class ChooseYourPhone implements ActionListener {
         isExecuting = false;
     }
 
-    /********/
     /* main */
+    public static void main(String[] args) {
 
-    /********/
-    public static void main(String args[]) {
-        /*===================================================*/
         /* Create the frame on the event dispatching thread. */
-        /*===================================================*/
-
-        SwingUtilities.invokeLater(
-                new Runnable() {
-                    public void run() {
-                        new ChooseYourPhone();
-                    }
-                });
+        SwingUtilities.invokeLater(ChooseYourPhone::new);
     }
 
 }
