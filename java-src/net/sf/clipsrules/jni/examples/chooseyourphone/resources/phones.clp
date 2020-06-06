@@ -130,7 +130,7 @@
   (attribute (name best-system) (value any))
   (attribute (name best-dual-sim) (value any))
   (attribute (name best-screen-size) (value any))
- )
+)
 
 (deftemplate PHONES::phone
   (slot name (default ?NONE))
@@ -147,17 +147,27 @@
     (phone (name "Apple iPhone 6s") (system ios) (dual-sim no) (screen-size 4.7))
 )
 
+(defrule PHONES::check-phones-screen
+    ?ph <- (phone (name ?name)
+            (system $? ?c $?)
+            (dual-sim $? ?s $?)
+            (screen-size $? ?scr $?)
+            (size $? ?ss $?))
+     =>
+     (if (> ?scr 5) then
+           (modify ?ph (size big)))
+     else (modify ?ph (size small))
+     )
+
 (defrule PHONES::generate-phones
   (phone (name ?name)
         (system $? ?c $?)
         (dual-sim $? ?s $?)
-        (screen-size $? ?scr $?)
-        (size $? ?si $?))
-
-
+        (screen-size $? ?ss $?)
+        (size $? ?scr $?))
   (attribute (name best-system) (value ?c) (certainty ?certainty-1))
   (attribute (name best-dual-sim) (value ?s) (certainty ?certainty-2))
-  (attribute (name best-screen-size) (value ?si) (certainty ?certainty-3))
+  (attribute (name best-screen-size) (value ?scr) (certainty ?certainty-3))
   =>
   (assert (attribute (name phone) (value ?name)
                      (certainty (min ?certainty-1 ?certainty-2 ?certainty-3)))))
