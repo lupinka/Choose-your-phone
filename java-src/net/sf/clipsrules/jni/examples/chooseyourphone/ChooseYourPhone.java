@@ -24,14 +24,17 @@ class ChooseYourPhone implements ActionListener {
 
     JComboBox<String> preferredSystem;
     JComboBox<String> preferredDualSim;
+    JComboBox<String> preferredScreenSize;
 
     JLabel jlab;
 
     String PreferredSystemNames[] = {"Don't Care", "Android", "iOS"};
     String PreferredDualSimNames[] = {"Don't Care", "Yes"};
+    String PreferredScreenSizeNames[] = {"Don't Care", "Big", "Small"};
 
     String preferredSystemChoices[] = new String[3];
     String preferredDualSimChoices[] = new String[2];
+    String preferredScreenSizeChoices[] = new String[3];
 
     ResourceBundle phoneResources;
 
@@ -73,6 +76,10 @@ class ChooseYourPhone implements ActionListener {
 
         preferredDualSimChoices[0] = phoneResources.getString("Don'tCare");
         preferredDualSimChoices[1] = phoneResources.getString("Yes");
+
+        preferredScreenSizeChoices[0] = phoneResources.getString("Don'tCare");
+        preferredScreenSizeChoices[1] = phoneResources.getString("Big");
+        preferredScreenSizeChoices[2] = phoneResources.getString("Small");
 
 
         /*===================================*/
@@ -117,6 +124,10 @@ class ChooseYourPhone implements ActionListener {
         preferencesPanel.add(preferredDualSim);
         preferredDualSim.addActionListener(this);
 
+        preferencesPanel.add(new JLabel(phoneResources.getString("ScreenSizeLabel")));
+        preferredScreenSize = new JComboBox<String>(preferredScreenSizeChoices);
+        preferencesPanel.add(preferredScreenSize);
+        preferredScreenSize.addActionListener(this);
 
         /*========================*/
         /* Create the meal panel. */
@@ -183,6 +194,7 @@ class ChooseYourPhone implements ActionListener {
 
         preferredSystem.setSelectedIndex(0);
         preferredDualSim.setSelectedIndex(0);
+        preferredScreenSize.setSelectedIndex(0);
 
         /*========================*/
         /* Load the wine program. */
@@ -260,6 +272,18 @@ class ChooseYourPhone implements ActionListener {
             clips.assertString("(attribute (name preferred-dual-sim) (value yes))");
         } else {
             clips.assertString("(attribute (name preferred-dual-sim) (value unknown))");
+        }
+
+        item = PreferredScreenSizeNames[preferredScreenSize.getSelectedIndex()];
+
+        if (item.equals("Big")) {
+            clips.assertString("(attribute (name preferred-screen-size) (value big))");
+        }
+        else if (item.equals("Small")) {
+            clips.assertString("(attribute (name preferred-screen-size) (value small))");
+        }
+        else {
+            clips.assertString("(attribute (name preferred-screen-size) (value unknown))");
         }
 
         Runnable runThread =
