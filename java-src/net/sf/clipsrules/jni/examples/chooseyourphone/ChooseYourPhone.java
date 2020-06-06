@@ -93,9 +93,6 @@ class ChooseYourPhone implements ActionListener {
         PreferredPriceChoices[2] = phoneResources.getString("1000to2000");
         PreferredPriceChoices[3] = phoneResources.getString("More2000");
 
-        preferredScreenSizeChoices[0] = phoneResources.getString("Don'tCare");
-        preferredScreenSizeChoices[1] = phoneResources.getString("Big");
-        preferredScreenSizeChoices[2] = phoneResources.getString("Small");
 
 
         /* Create a new JFrame container and */
@@ -278,15 +275,32 @@ class ChooseYourPhone implements ActionListener {
 
         if (item.equals("Android")) {
             clips.assertString("(attribute (name preferred-system) (value android))");
-        }
-        else if (item.equals("iOS")) {
+        } else if (item.equals("iOS")) {
             clips.assertString("(attribute (name preferred-system) (value ios))");
-        }
-        else {
+        } else {
             clips.assertString("(attribute (name preferred-system) (value unknown))");
         }
 
-    /*checkbox rules*/
+        item = PreferredScreenNames[PreferredScreen.getSelectedIndex()];
+        if (item.equals("Less than 5,5'")) {
+            clips.assertString("(attribute (name preferred-screen-size) (value small))");
+        } else if (item.equals("More than 5,5'")) {
+            clips.assertString("(attribute (name preferred-screen-size) (value big))");
+        } else {
+            clips.assertString("(attribute (name preferred-screen-size) (value unknown))");
+        }
+
+        item = PreferredPriceNames[PreferredPrice.getSelectedIndex()];
+        if (item.equals("Less than 1000")) {
+            clips.assertString("(attribute (name preferred-price) (value low))");
+        } else if (item.equals("1000 to 2000")) {
+            clips.assertString("(attribute (name preferred-price) (value medium))");
+        } else if (item.equals("More than 2000")) {
+            clips.assertString("(attribute (name preferred-price) (value high))");
+        } else {
+            clips.assertString("(attribute (name preferred-price) (value unknown))");
+        }
+        /*checkbox rules*/
         if (preferredDualSim.isSelected()) {
             clips.assertString("(attribute (name preferred-dual-sim) (value yes))");
         } else {

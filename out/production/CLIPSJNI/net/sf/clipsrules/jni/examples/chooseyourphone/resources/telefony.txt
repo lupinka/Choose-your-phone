@@ -1,0 +1,362 @@
+------------------------------------------------
+1. Xiaomi Redmi Note 8 Pro":
+        cena: 999,
+        system: android,
+        aparat_przod: 20,
+        aparaty_tyl: 64,
+        ram: 64,
+        przekatna ekranu: 6.53,
+        dual-sim: true,
+        odpornosc: "wodoodpornosc IP 52",
+        bateria: 4500,
+        pamięć: 64, 128, 256
+
+2. Samsung Galaxy A10:
+        cena: 699
+        system: android
+        aparat_przod: 5
+        aparaty_tyl: 13
+        ram: 3
+        przekatna ekranu: 6.2" 
+        dual-sim: true
+        odpornosc: nie
+        bateria: 3400,
+        pamiec: 32
+3. Nokia 5.1 Plus:
+        cena: 599
+        system: android
+        aparat_przod: 8
+        aparaty_tyl: 13
+        ram: 3
+        przekatna ekranu: 5.8 
+        dual-sim: true
+        odpornosc: false
+        bateria: 3060,
+        pamiec: 16, 32
+4. Cavion Base 5.0 LTE:
+        cena: 189
+        system: android
+        aparat_przod: 2
+        aparaty_tyl: 5
+        ram: 1
+        przekatna ekranu: 5.0 
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 1950,
+        pamiec: 8
+    
+5. Huawei Y5
+        cena: 299
+        system: android
+        aparat_przod: 5
+        aparaty_tyl: 8
+        ram: 2
+        przekatna ekranu: 5.45
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3020,
+        pamiec: 16
+
+6. Xiaomi Redmi 7A:
+        cena: 450
+        system: android
+        aparat_przod: 5
+        aparaty_tyl: 13
+        ram: 2
+        przekatna ekranu: 5.45
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4000,
+        pamiec: 16, 32
+7. Samsung Galaxy A40:
+        cena: 999
+        system: android
+        aparat_przod: 25
+        aparaty_tyl: 16
+        ram: 4
+        przekatna ekranu: 5.9 
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3100,
+        pamiec: 64
+8. LG Q60:
+        cena: 789  
+        system: android
+        aparat_przod: 13
+        aparaty_tyl: 16
+        ram: 3
+        przekatna ekranu: 6.26
+        dual-sim: true
+         
+        odpornosc: militrana, MIL-STD-810G
+        bateria: 3500
+9. LG K40:
+        cena: 520
+        system: android
+        aparat_przod: 8
+        aparaty_tyl:  16
+        ram: 2
+        przekatna ekranu: 5.7 
+        dual-sim: true
+         
+        odpornosc: militarna, MIL-STD-810G
+        bateria: 3000,
+        pamiec: 32
+10. Honor 9X:
+        cena: 899 
+        system: android
+        aparat_przod: 16
+        aparaty_tyl: 48
+        ram: 4
+        przekatna ekranu: 6.59
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4000,
+        pamiec: 64, 128, 256
+-------------------------------------------------
+11. Samsung Galaxy A50:
+        cena: 1399
+        system: android
+        aparat_przod: 25
+        aparaty_tyl: 25
+        ram: 4
+        przekatna ekranu: 6.4 
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4000,
+        pamiec: 128
+12. Motorola One Hyper:
+        cena: 1549
+        system: android
+        aparat_przod: 32
+        aparaty_tyl: 64
+        ram: 4
+        przekatna ekranu: 6.5
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4000,
+        pamiec: 128
+13. Xiaomi Mi 9 Lite:
+        cena: 1499
+        system: android
+        aparat_przod: 32
+        aparaty_tyl: 48
+        ram: 6
+        przekatna ekranu: 6.39
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4030
+        pamiec: 128
+    
+14. LG G8s ThinQ:
+        cena: 1899
+        system: android
+        aparat_przod: 8
+        aparaty_tyl: 12
+        ram: 6
+        przekatna ekranu: 6.21
+        dual-sim: false
+         
+        odpornosc: IP68
+        bateria: 3550
+        pamiec: 128
+15. Samsung Galaxy J5:
+        cena: 1199
+        system: android
+        aparat_przod: 13
+        aparaty_tyl: 13
+        ram: 2
+        przekatna ekranu: 5.2
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3000
+        pamiec: 16
+16. Huawei P30 Lite:
+        cena: 1199
+        system: android
+        aparat_przod: 24
+        aparaty_tyl: 48
+        ram: 4
+        przekatna ekranu: 6.15
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3340
+        pamiec: 128
+17. Huawei P20:
+        cena: 1799
+        system: android
+        aparat_przod: 24
+        aparaty_tyl: 20
+        ram: 4
+        przekatna ekranu: 5.8 
+        dual-sim: true
+         
+        odpornosc: IP67
+        bateria: 3400
+        pamiec: 128
+18. Apple iPhone 6s:
+        cena: 1399
+        system: iOS
+        aparat_przod: 5
+        aparaty_tyl: 12
+        ram: 2
+        przekatna ekranu: 4.7
+        dual-sim: false
+         
+        odpornosc: false
+        bateria: 1715
+        pamiec: 32
+19. Apple iPhone 7:
+        cena 1499: 
+        system: iOS
+        aparat_przod: 7
+        aparaty_tyl: 12
+        ram: 2
+        przekatna ekranu: 4.7
+        dual-sim: false 
+         
+        odpornosc: IP67
+        bateria: 1960
+        pamiec: 32
+20. Xiaomi Mi 8:
+        cena: 1899 
+        system: android
+        aparat_przod: 20
+        aparaty_tyl: 12
+        ram: 6
+        przekatna ekranu: 6.21 
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3400
+-------------------------------------------------
+21. Samsung Galaxy S10e:
+        cena: 3199
+        system: android
+        aparat_przod: 10
+        aparaty_tyl: 16
+        ram: 6
+        przekatna ekranu: 5.8
+        dual-sim: true
+         
+        odpornosc: IP68
+        bateria: 3100
+        pamiec: 128
+22. Sony Xperia XZ2 Compact:
+        cena: 2299 
+        system: android 
+        aparat_przod: 5
+        aparaty_tyl: 19
+        ram: 4
+        przekatna ekranu: 5.0
+        dual-sim: true
+         
+        odpornosc: IP68, IP65
+        bateria: 2870
+    
+23. Asus ROG Phone:
+        cena: 2199 
+        system: android
+        aparat_przod: 8
+        aparaty_tyl: 12
+        ram: 8
+        przekatna ekranu: 6.0
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 4000
+        pamiec: 128
+24. Apple iPhone SE:
+        cena: 2499
+        system: iOS
+        aparat_przod: 7
+        aparaty_tyl: 12
+        ram: 3
+        przekatna ekranu: 4.8
+        dual-sim: true
+         
+        odpornosc: IP67
+        bateria: 1821
+        pamiec: 128
+25. Apple iPhone XS:
+        cena: 3099 
+        system: iOS
+        aparat_przod: 7
+        aparaty_tyl: 12 
+        ram: 4
+        przekatna ekranu: 5.8
+        dual-sim: true
+         
+        odpornosc: IP68
+        bateria: 3300
+        pamiec: 64 
+26. Xiaomi Mi Note 10:
+        cena: 2099
+        system: android
+        aparat_przod: 32
+        aparaty_tyl: 108
+        ram: 6
+        przekatna ekranu: 6.47
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 5260
+        pamiec: 128
+27. OnePlus 7T:
+        cena: 2499
+        system: android
+        aparat_przod: 16
+        aparaty_tyl: 48
+        ram: 8
+        przekatna ekranu: 6.55
+        dual-sim: true
+         
+        odpornosc: false
+        bateria: 3800
+        pamiec: 128
+28. Huawei P30 Pro:
+        cena: 2799
+        system: android
+        aparat_przod: 32
+        aparaty_tyl: 40
+        ram: 8
+        przekatna ekranu: 6.47
+        dual-sim: true 
+         
+        odpornosc: IP68
+        bateria: 4200
+        pamiec: 128
+29. Apple iPhone 11:
+        cena: 3499 
+        system: iOS
+        aparat_przod: 12
+        aparaty_tyl: 12
+        ram: 4
+        przekatna ekranu: 6.1 
+        dual-sim: true
+         
+        odpornosc: IP68
+        bateria: 3110
+        pamiec: 64
+30. Huawei Mate 30 Pro:
+        cena: 2999
+        system: android
+        aparat_przod: 32
+        aparaty_tyl: 40
+        ram: 8
+        przekatna ekranu: 6.53
+        dual-sim: true
+         
+        odpornosc: IP68
+        bateria: 4500
+        pamiec: 128
