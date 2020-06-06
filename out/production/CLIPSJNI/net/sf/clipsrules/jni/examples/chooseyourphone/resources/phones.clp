@@ -155,9 +155,8 @@
             (size $? ?ss $?))
      =>
      (if (> ?scr 5) then
-           (modify ?ph (size big)))
-     else (modify ?ph (size small))
-     )
+           (modify ?ph (size big))
+     else (modify ?ph (size small))))
 
 (defrule PHONES::generate-phones
   (phone (name ?name)
