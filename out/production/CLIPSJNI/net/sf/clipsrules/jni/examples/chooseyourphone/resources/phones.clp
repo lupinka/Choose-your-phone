@@ -235,11 +235,10 @@
 (deffunction PHONES::phone-sort (?w1 ?w2)
    (< (fact-slot-value ?w1 certainty)
       (fact-slot-value ?w2 certainty)))
-      
+
 (deffunction PHONES::get-phone-list ()
   (bind ?facts (find-all-facts ((?f attribute))
                               (and (eq ?f:name phone)
                               (>= ?f:certainty 0))))
   (sort phone-sort ?facts))
-  
 
