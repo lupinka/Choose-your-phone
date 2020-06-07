@@ -307,6 +307,47 @@ class ChooseYourPhone implements ActionListener {
             clips.assertString("(attribute (name preferred-dual-sim) (value unknown))");
         }
 
+        if (PreferredForGames.isSelected()) {
+            clips.assertString("(attribute (name preferred-for-games) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-for-games) (value unknown))");
+        }
+
+        if (PreferredForPhotos.isSelected()) {
+            clips.assertString("(attribute (name preferred-for-photos) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-for-photos) (value unknown))");
+        }
+
+        if (PreferredBatteryCapacity.isSelected()) {
+            clips.assertString("(attribute (name preferred-battery-capacity) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-battery-capacity) (value unknown))");
+        }
+
+        if (PreferredDifficultConditions.isSelected()) {
+            clips.assertString("(attribute (name preferred-difficult-conditions) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-difficult-conditions) (value unknown))");
+        }
+
+        if (PreferredMultipleApps.isSelected()) {
+            clips.assertString("(attribute (name preferred-multiple-apps) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-multiple-apps) (value unknown))");
+        }
+
+        if (PreferredBigMemory.isSelected()) {
+            clips.assertString("(attribute (name preferred-big-memory) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-big-memory) (value unknown))");
+        }
+
+        if (PreferredForWatching.isSelected()) {
+            clips.assertString("(attribute (name preferred-for-watching) (value yes))");
+        } else {
+            clips.assertString("(attribute (name preferred-for-watching) (value unknown))");
+        }
 
         Runnable runThread =
                 () -> {
