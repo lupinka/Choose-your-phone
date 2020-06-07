@@ -198,8 +198,7 @@
 
 (defrule PHONES::check-phones-screen
     ?ph <- (phone (name ?name)
-            (screen-size $? ?scr $?)
-            (size $? ?ss $?))
+            (screen-size $? ?scr $?))
      =>
      (if (> ?scr 5) then
            (modify ?ph (size big))
@@ -208,8 +207,7 @@
 
 (defrule PHONES::check-phones-price
     ?ph <- (phone (name ?name)
-            (price $? ?price $?)
-            (price-final $? ?price-final $?))
+            (price $? ?price $?))
      =>
     (if (> ?price 1000) then
         (if (> ?price 2000) then
