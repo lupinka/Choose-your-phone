@@ -94,6 +94,7 @@
 
 (deffacts the-phone-rules
 
+  ; system
   (rule (if preferred-system is android)
         (then best-system is android))
   (rule (if preferred-system is ios)
@@ -102,6 +103,7 @@
         (then best-system is android with certainty 20 and
                best-system is ios with certainty 20))
 
+  ; dual-sim
   (rule (if preferred-dual-sim is yes)
         (then best-dual-sim is yes))
   (rule (if preferred-dual-sim is no)
@@ -110,6 +112,7 @@
         (then best-dual-sim is yes with certainty 20 and
                best-dual-sim is no with certainty 20))
 
+  ; screen-size
   (rule (if preferred-screen-size is big)
         (then best-screen-size is big))
   (rule (if preferred-screen-size is small)
@@ -118,6 +121,7 @@
         (then best-screen-size is big with certainty 20 and
                  best-screen-size is small with certainty 20))
 
+  ; price
   (rule (if preferred-price is big)
           (then best-price is big))
   (rule (if preferred-price is medium)
@@ -128,8 +132,64 @@
           (then best-price is low with certainty 20 and
                    best-price is medium with certainty 20 and
                    best-price is high with certainty 20))
-)
 
+  ; for gamers
+  (rule (if preferred-games is yes)
+        (then best-screen-size is big with certainty 80 and
+              best-ram-size is big with certainty 70 and
+              best-battery is big with certainty 80))
+  (rule (if preferred-games is no)
+          (then best-screen-size is big with certainty 50 and
+                best-screen-size is small with certainty 50 and
+                best-ram-size is small with certainty 70))
+
+  ; for photos
+  (rule (if preferred-photos is yes)
+          (then best-front-camera is high with certainty 80 and
+                best-back-camera is high with certainty 90 and
+                best-memory-size is big with certainty 70))
+  (rule (if preferred-photos is no)
+            (then best-front-camera is high with certainty 50 and
+                  best-back-camera is high with certainty 50 and
+                  best-memory-size is big with certainty 50))
+
+  ; capacious battery
+  (rule (if preferred-battery is yes)
+            (then best-battery is big))
+  (rule (if preferred-battery is no)
+              (then best-battery is big with certainty 50 and
+                    best-battery is small with certainty 50))
+
+  ; difficult conditions
+  (rule (if preferred-ip is yes)
+              (then best-ip is true))
+  (rule (if preferred-ip is no)
+                (then best-ip is none))
+
+  ; multiple apps
+  (rule (if preferred-multiple-apps is yes)
+              (then best-memory-size is bigh with certainty 80 and
+                    best-ram-size is high with certainty 60))
+  (rule (if preferred-multiple-apps is no)
+                (then best-memory-size is small with certainty 70 and
+                      best-ram-size is low with certainty 70))
+
+  ; big memory
+  (rule (if preferred-big-memory is yes)
+                (then best-memory-size is big))
+  (rule (if preferred-big-memory is no)
+                  (then best-memory-size is small))
+
+  ; for watching
+  (rule (if preferred-movies is yes)
+          (then best-screen-size is big with certainty 80 and
+                best-memory-size is big with certainty 70 and
+                best-battery is big with certainty 70))
+    (rule (if preferred-movies is no)
+            (then best-screen-size is big with certainty 50 and
+                  best-memory-size is small with certainty 50 and
+                  best-memory-size is small with certainty 70))
+)
 ;;************************
 ;;* PHONE SELECTION RULES *
 ;;************************
@@ -142,6 +202,12 @@
   (attribute (name best-system) (value any))
   (attribute (name best-dual-sim) (value any))
   (attribute (name best-screen-size) (value any))
+  (attribute (name best-ram-size) (value any))
+  (attribute (name best-front-camera) (value any))
+  (attribute (name best-back-camera) (value any))
+  (attribute (name best-memory-size) (value any))
+  (attribute (name best-ip) (value any))
+  (attribute (name best-battery) (value any))
 )
 
 (deftemplate PHONES::phone

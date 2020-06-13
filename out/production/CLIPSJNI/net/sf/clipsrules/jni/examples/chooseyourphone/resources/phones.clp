@@ -128,8 +128,20 @@
           (then best-price is low with certainty 20 and
                    best-price is medium with certainty 20 and
                    best-price is high with certainty 20))
-)
 
+  (rule (if preferred-games is yes)
+        (then best-screen-size is big with certainty 80 and
+              best-ram-size is big with certainty 70 and
+              best-battery is big with certainty 80))
+  (rule (if preferred-games is no)
+          (then best-screen-size is big with certainty 50 and
+                best-screen-size is small with certainty 50 and
+                best-ram-size is small with certainty 70))
+
+  (rule (if preferred-movies is yes)
+          (then best-screen-size is big with certainty 80 and
+                best-memory-size is big with certainty 70))
+)
 ;;************************
 ;;* PHONE SELECTION RULES *
 ;;************************
