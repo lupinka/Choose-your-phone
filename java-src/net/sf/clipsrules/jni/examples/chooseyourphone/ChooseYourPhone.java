@@ -150,16 +150,6 @@ class ChooseYourPhone implements ActionListener {
         secondPanel.add(preferredDualSim);
         preferredDualSim.addActionListener(this);
 
-        secondPanel.add(new JLabel(phoneResources.getString("ForGamesLabel")));
-        PreferredForGames = new JCheckBox();
-        secondPanel.add(PreferredForGames);
-        PreferredForGames.addActionListener(this);
-
-        secondPanel.add(new JLabel(phoneResources.getString("ForPhotosLabel")));
-        PreferredForPhotos = new JCheckBox();
-        secondPanel.add(PreferredForPhotos);
-        PreferredForPhotos.addActionListener(this);
-
         secondPanel.add(new JLabel(phoneResources.getString("BatteryLabel")));
         PreferredBatteryCapacity = new JCheckBox();
         secondPanel.add(PreferredBatteryCapacity);
@@ -184,6 +174,16 @@ class ChooseYourPhone implements ActionListener {
         PreferredForWatching = new JCheckBox();
         secondPanel.add(PreferredForWatching);
         PreferredForWatching.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("ForGamesLabel")));
+        PreferredForGames = new JCheckBox();
+        secondPanel.add(PreferredForGames);
+        PreferredForGames.addActionListener(this);
+
+        secondPanel.add(new JLabel(phoneResources.getString("ForPhotosLabel")));
+        PreferredForPhotos = new JCheckBox();
+        secondPanel.add(PreferredForPhotos);
+        PreferredForPhotos.addActionListener(this);
 
 
         /* Create a panel including the preferences and */
@@ -308,27 +308,27 @@ class ChooseYourPhone implements ActionListener {
         }
 
         if (PreferredForGames.isSelected()) {
-            clips.assertString("(attribute (name preferred-for-games) (value yes))");
+            clips.assertString("(attribute (name preferred-games) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-for-games) (value unknown))");
+            clips.assertString("(attribute (name preferred-games) (value unknown))");
         }
 
         if (PreferredForPhotos.isSelected()) {
-            clips.assertString("(attribute (name preferred-for-photos) (value yes))");
+            clips.assertString("(attribute (name preferred-photos) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-for-photos) (value unknown))");
+            clips.assertString("(attribute (name preferred-photos) (value unknown))");
         }
 
         if (PreferredBatteryCapacity.isSelected()) {
-            clips.assertString("(attribute (name preferred-battery-capacity) (value yes))");
+            clips.assertString("(attribute (name preferred-battery) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-battery-capacity) (value unknown))");
+            clips.assertString("(attribute (name preferred-battery) (value unknown))");
         }
 
         if (PreferredDifficultConditions.isSelected()) {
-            clips.assertString("(attribute (name preferred-difficult-conditions) (value yes))");
+            clips.assertString("(attribute (name preferred-ip) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-difficult-conditions) (value unknown))");
+            clips.assertString("(attribute (name preferred-ip) (value unknown))");
         }
 
         if (PreferredMultipleApps.isSelected()) {
@@ -344,9 +344,9 @@ class ChooseYourPhone implements ActionListener {
         }
 
         if (PreferredForWatching.isSelected()) {
-            clips.assertString("(attribute (name preferred-for-watching) (value yes))");
+            clips.assertString("(attribute (name preferred-movies) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-for-watching) (value unknown))");
+            clips.assertString("(attribute (name preferred-movies) (value unknown))");
         }
 
         Runnable runThread =
