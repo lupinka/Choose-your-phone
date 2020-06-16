@@ -217,7 +217,7 @@
   (multislot system (default any))
   (multislot dual-sim(default any))
   (multislot screen-size(default any))
-  (multislot size(default any))
+  (multislot screen-size-final(default any))
   (multislot front-camera(default any))
   (multislot front-camera-final(default any))
   (multislot back-camera(default any))
@@ -272,8 +272,8 @@
             (screen-size $? ?scr $?))
      =>
      (if (> ?scr 5.8) then
-           (modify ?ph (size big))
-     else (modify ?ph (size small)))
+           (modify ?ph (screen-size-final big))
+     else (modify ?ph (screen-size-final small)))
 )
 
 (defrule PHONES::check-phones-price
@@ -348,12 +348,13 @@
         (battery $? ?bat $?)
         (battery-final $? ?batf $?)
         (ip $? ?i $?)
-        (size $? ?scr $?)
+        (screen-size $? ?scr $?)
+        (screen-size-final $? ?scrf $?)
   )
   (attribute (name best-price) (value ?price-final) (certainty ?certainty-1))
   (attribute (name best-system) (value ?c) (certainty ?certainty-2))
   (attribute (name best-dual-sim) (value ?s) (certainty ?certainty-3))
-  (attribute (name best-screen-size) (value ?scr) (certainty ?certainty-10))
+  (attribute (name best-screen-size) (value ?scrf) (certainty ?certainty-10))
   (attribute (name best-ram-size) (value ?rf) (certainty ?certainty-4))
   (attribute (name best-front-camera) (value ?fcf) (certainty ?certainty-5))
   (attribute (name best-back-camera) (value ?bcf) (certainty ?certainty-6))
