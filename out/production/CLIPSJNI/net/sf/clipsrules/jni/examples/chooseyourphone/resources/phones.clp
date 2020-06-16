@@ -219,46 +219,51 @@
   (multislot screen-size(default any))
   (multislot size(default any))
   (multislot front-camera(default any))
+  (multislot front-camera-final(default any))
   (multislot back-camera(default any))
+  (multislot back-camera-final(default any))
   (multislot ram(default any))
+  (multislot ram-final(default any))
   (multislot ip(default any))
   (multislot battery(default any))
+  (multislot battery-final(default any))
   (multislot memory(default any))
+  (multislot memory-final(default any))
 
 )
 
 
 (deffacts PHONES::the-phone-list
-    (phone (name "Xiaomi Redmi Note 8 Pro") (price 999) (system android) (front-camera 20) (back-camera 64) (ram 6) (screen-size 6.53) (dual-sim yes) (ip IP52) (battery 4500) (memory 64))
+    (phone (name "Xiaomi Redmi Note 8 Pro") (price 999) (system android) (front-camera 20) (back-camera 64) (ram 6) (screen-size 6.53) (dual-sim yes) (ip yes) (battery 4500) (memory 64))
     (phone (name "Samsung Galaxy A10") (price 699) (system android) (front-camera 5) (back-camera 13) (ram 3) (screen-size 6.2) (dual-sim yes) (ip none) (battery 3400) (memory 32))
     (phone (name "Nokia 5.1 Plus") (price 599) (system android) (front-camera 8) (back-camera 13) (ram 3) (screen-size 5.8) (dual-sim yes) (ip none) (battery 3060) (memory 16))
     (phone (name "Cavion Base 5.0 LTE") (price 189) (system android) (front-camera 2) (back-camera 5) (ram 1) (screen-size 5.0) (dual-sim yes) (ip none) (battery 1950) (memory 8))
     (phone (name "Huawei Y5") (price 299) (system android) (front-camera 5) (back-camera 8) (ram 2) (screen-size 5.45) (dual-sim yes) (ip none) (battery 3020) (memory 16))
     (phone (name "Xiaomi Redmi 7A") (price 450) (system android) (front-camera 5) (back-camera 13) (ram 2) (screen-size 5.45) (dual-sim yes) (ip none) (battery 4000) (memory 16))
     (phone (name "Samsung Galaxy A40") (price 999) (system android) (front-camera 25) (back-camera 16) (ram 4) (screen-size 5.9) (dual-sim yes) (ip none) (battery 3100) (memory 64))
-    (phone (name "LG Q60") (price 789) (system android) (front-camera 13) (back-camera 16) (ram 3) (screen-size 6.26) (dual-sim yes) (ip MIL-STD-810G) (battery 3500) (memory 64))
-    (phone (name "LG K40") (price 520) (system android) (front-camera 8) (back-camera 16) (ram 2) (screen-size 5.7) (dual-sim yes) (ip MIL-STD-810G) (battery 3000) (memory 32))
+    (phone (name "LG Q60") (price 789) (system android) (front-camera 13) (back-camera 16) (ram 3) (screen-size 6.26) (dual-sim yes) (ip yes) (battery 3500) (memory 64))
+    (phone (name "LG K40") (price 520) (system android) (front-camera 8) (back-camera 16) (ram 2) (screen-size 5.7) (dual-sim yes) (ip yes) (battery 3000) (memory 32))
     (phone (name "Honor 9X") (price 899) (system android) (front-camera 16) (back-camera 48) (ram 4) (screen-size 6.59) (dual-sim yes) (ip none) (battery 4000) (memory 64))
     (phone (name "Samsung Galaxy A50") (price 1399) (system android) (front-camera 25) (back-camera 25) (ram 4) (screen-size 6.4) (dual-sim yes) (ip none) (battery 4000) (memory 128))
     (phone (name "Motorola One Hyper") (price 1549) (system android) (front-camera 32) (back-camera 64) (ram 4) (screen-size 6.5) (dual-sim yes) (ip none) (battery 4000) (memory 128))
     (phone (name "Xiaomi Mi 9 Lite") (price 1499) (system android) (front-camera 32) (back-camera 48) (ram 6) (screen-size 6.21) (dual-sim yes) (ip none) (battery 4030) (memory 128))
-    (phone (name "LG G8s ThinQ") (price 1899) (system android) (front-camera 8) (back-camera 12) (ram 6) (screen-size 6.21) (dual-sim no) (ip IP68) (battery 3550) (memory 128))
+    (phone (name "LG G8s ThinQ") (price 1899) (system android) (front-camera 8) (back-camera 12) (ram 6) (screen-size 6.21) (dual-sim no) (ip yes) (battery 3550) (memory 128))
     (phone (name "Samsung Galaxy J5") (price 1199) (system android) (front-camera 13) (back-camera 13) (ram 2) (screen-size 5.2) (dual-sim yes) (ip none) (battery 3000) (memory 16))
     (phone (name "Huawei P30 Lite") (price 1199) (system android) (front-camera 24) (back-camera 48) (ram 4) (screen-size 6.15) (dual-sim yes) (ip none) (battery 3340) (memory 128))
-    (phone (name "Huawei P20") (price 1799) (system android) (front-camera 24) (back-camera 20) (ram 4) (screen-size 5.8) (dual-sim yes) (ip IP67) (battery 3400) (memory 128))
+    (phone (name "Huawei P20") (price 1799) (system android) (front-camera 24) (back-camera 20) (ram 4) (screen-size 5.8) (dual-sim yes) (ip yes) (battery 3400) (memory 128))
     (phone (name "Apple iPhone 6s") (price 1399) (system ios) (front-camera 5) (back-camera 12) (ram 2) (screen-size 4.7) (dual-sim no) (ip none) (battery 1715) (memory 32))
-    (phone (name "Apple iPhone 7") (price 1499) (system ios) (front-camera 7) (back-camera 12) (ram 2) (screen-size 4.7) (dual-sim no) (ip IP67) (battery 1960) (memory 32))
+    (phone (name "Apple iPhone 7") (price 1499) (system ios) (front-camera 7) (back-camera 12) (ram 2) (screen-size 4.7) (dual-sim no) (ip yes) (battery 1960) (memory 32))
     (phone (name "Xiaomi Mi 8") (price 1899) (system android) (front-camera 20) (back-camera 12) (ram 6) (screen-size 6.21) (dual-sim yes) (ip none) (battery 3400) (memory 128))
-    (phone (name "Samsung Galaxy S10e") (price 3199) (system android) (front-camera 10) (back-camera 16) (ram 6) (screen-size 5.8) (dual-sim yes) (ip IP68) (battery 3100) (memory 128))
-    (phone (name "Sony Xperia XZ2 Compact") (price 2299) (system android) (front-camera 5) (back-camera 19) (ram 4) (screen-size 5.0) (dual-sim yes) (ip IP68) (battery 2870) (memory 64))
+    (phone (name "Samsung Galaxy S10e") (price 3199) (system android) (front-camera 10) (back-camera 16) (ram 6) (screen-size 5.8) (dual-sim yes) (ip yes) (battery 3100) (memory 128))
+    (phone (name "Sony Xperia XZ2 Compact") (price 2299) (system android) (front-camera 5) (back-camera 19) (ram 4) (screen-size 5.0) (dual-sim yes) (ip yes) (battery 2870) (memory 64))
     (phone (name "Asus ROG Phone") (price 2199) (system android) (front-camera 8) (back-camera 12) (ram 8) (screen-size 6.0) (dual-sim yes) (ip none) (battery 4000) (memory 128))
-    (phone (name "Apple iPhone SE") (price 2499) (system android) (front-camera 7) (back-camera 12) (ram 3) (screen-size 4.8) (dual-sim yes) (ip IP67) (battery 1821) (memory 128))
-    (phone (name "Apple iPhone XS") (price 3099) (system android) (front-camera 7) (back-camera 12) (ram 4) (screen-size 5.8) (dual-sim yes) (ip IP68) (battery 3300) (memory 64))
+    (phone (name "Apple iPhone SE") (price 2499) (system android) (front-camera 7) (back-camera 12) (ram 3) (screen-size 4.8) (dual-sim yes) (ip yes) (battery 1821) (memory 128))
+    (phone (name "Apple iPhone XS") (price 3099) (system android) (front-camera 7) (back-camera 12) (ram 4) (screen-size 5.8) (dual-sim yes) (ip yes) (battery 3300) (memory 64))
     (phone (name "Xiaomi Mi Note 10") (price 2099) (system android) (front-camera 32) (back-camera 108) (ram 6) (screen-size 6.47) (dual-sim yes) (ip none) (battery 5260) (memory 128))
     (phone (name "OnePlus 7T") (price 2499) (system android) (front-camera 16) (back-camera 48) (ram 8) (screen-size 6.55) (dual-sim yes) (ip none) (battery 3800) (memory 128))
-    (phone (name "Huawei P30 Pro") (price 2799) (system android) (front-camera 32) (back-camera 40) (ram 8) (screen-size 6.47) (dual-sim yes) (ip IP68) (battery 4200) (memory 128))
-    (phone (name "Apple iPhone 11") (price 3499) (system ios) (front-camera 12) (back-camera 12) (ram 4) (screen-size 6.1) (dual-sim yes) (ip IP68) (battery 3110) (memory 64))
-    (phone (name "Huawei Mate 30 Pro") (price 2999) (system android) (front-camera 32) (back-camera 40) (ram 8) (screen-size 6.53) (dual-sim yes) (ip IP68) (battery 4500) (memory 128))
+    (phone (name "Huawei P30 Pro") (price 2799) (system android) (front-camera 32) (back-camera 40) (ram 8) (screen-size 6.47) (dual-sim yes) (ip yes) (battery 4200) (memory 128))
+    (phone (name "Apple iPhone 11") (price 3499) (system ios) (front-camera 12) (back-camera 12) (ram 4) (screen-size 6.1) (dual-sim yes) (ip yes) (battery 3110) (memory 64))
+    (phone (name "Huawei Mate 30 Pro") (price 2999) (system android) (front-camera 32) (back-camera 40) (ram 8) (screen-size 6.53) (dual-sim yes) (ip yes) (battery 4500) (memory 128))
 
 )
 
@@ -266,7 +271,7 @@
     ?ph <- (phone (name ?name)
             (screen-size $? ?scr $?))
      =>
-     (if (> ?scr 5) then
+     (if (> ?scr 5.8) then
            (modify ?ph (size big))
      else (modify ?ph (size small)))
 )
@@ -281,19 +286,83 @@
         else (modify ?ph (price-final medium)))
     else (modify ?ph (price-final low)))
 )
+
+(defrule PHONES::check-battery-size
+    ?ph <- (phone (name ?name)
+            (battery $? ?bat $?))
+     =>
+     (if (> ?bat 3100) then
+           (modify ?ph (battery-final big))
+     else (modify ?ph (battery-final small)))
+)
+
+(defrule PHONES::check-ram-size
+    ?ph <- (phone (name ?name)
+            (ram $? ?r $?))
+     =>
+     (if (> ?r 3) then
+           (modify ?ph (ram-final big))
+     else (modify ?ph (ram-final small)))
+)
+
+(defrule PHONES::check-front-camera
+    ?ph <- (phone (name ?name)
+            (front-camera $? ?fc $?))
+     =>
+     (if (> ?fc 20) then
+           (modify ?ph (front-camera-final big))
+     else (modify ?ph (front-camera-final small)))
+)
+
+(defrule PHONES::check-back-camera
+    ?ph <- (phone (name ?name)
+            (back-camera $? ?bc $?))
+     =>
+     (if (> ?bc 20) then
+           (modify ?ph (back-camera-final big))
+     else (modify ?ph (back-camera-final small)))
+)
+
+(defrule PHONES::check-memory
+    ?ph <- (phone (name ?name)
+            (memory $? ?mem $?))
+     =>
+     (if (> ?mem 32) then
+           (modify ?ph (memory-final big))
+     else (modify ?ph (memory-final small)))
+)
+
 (defrule PHONES::generate-phones
   (phone (name ?name)
         (price-final $? ?price-final $?)
         (system $? ?c $?)
         (dual-sim $? ?s $?)
-        (size $? ?scr $?))
+        (ram $? ?r $?)
+        (ram-final $? ?rf $?)
+        (front-camera $? ?fc $?)
+        (front-camera-final $? ?fcf $?)
+        (back-camera $? ?bc $?)
+        (back-camera-final $? ?bcf $?)
+        (memory $? ?mem $?)
+        (memory-final $? ?memf $?)
+        (battery $? ?bat $?)
+        (battery-final $? ?batf $?)
+        (ip $? ?i $?)
+        (size $? ?scr $?)
+  )
   (attribute (name best-price) (value ?price-final) (certainty ?certainty-1))
   (attribute (name best-system) (value ?c) (certainty ?certainty-2))
   (attribute (name best-dual-sim) (value ?s) (certainty ?certainty-3))
-  (attribute (name best-screen-size) (value ?scr) (certainty ?certainty-4))
+  (attribute (name best-screen-size) (value ?scr) (certainty ?certainty-10))
+  (attribute (name best-ram-size) (value ?rf) (certainty ?certainty-4))
+  (attribute (name best-front-camera) (value ?fcf) (certainty ?certainty-5))
+  (attribute (name best-back-camera) (value ?bcf) (certainty ?certainty-6))
+  (attribute (name best-memory-size) (value ?memf) (certainty ?certainty-7))
+  (attribute (name best-battery) (value ?batf) (certainty ?certainty-8))
+  (attribute (name best-ip) (value ?ip) (certainty ?certainty-9))
   =>
   (assert (attribute (name phone) (value ?name)
-                     (certainty (min ?certainty-1 ?certainty-2 ?certainty-3 ?certainty-4))))
+                     (certainty (min ?certainty-1 ?certainty-2 ?certainty-3 ?certainty-4 ?certainty-5 ?certainty-6 ?certainty-7 ?certainty-8 ?certainty-9 ?certainty-10))))
 )
 
 (deffunction PHONES::phone-sort (?w1 ?w2)

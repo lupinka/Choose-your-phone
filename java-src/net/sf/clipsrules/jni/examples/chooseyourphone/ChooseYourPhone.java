@@ -310,43 +310,43 @@ class ChooseYourPhone implements ActionListener {
         if (PreferredForGames.isSelected()) {
             clips.assertString("(attribute (name preferred-games) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-games) (value unknown))");
+            clips.assertString("(attribute (name preferred-games) (value no))");
         }
 
         if (PreferredForPhotos.isSelected()) {
             clips.assertString("(attribute (name preferred-photos) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-photos) (value unknown))");
+            clips.assertString("(attribute (name preferred-photos) (value no))");
         }
 
         if (PreferredBatteryCapacity.isSelected()) {
             clips.assertString("(attribute (name preferred-battery) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-battery) (value unknown))");
+            clips.assertString("(attribute (name preferred-battery) (value no))");
         }
 
         if (PreferredDifficultConditions.isSelected()) {
             clips.assertString("(attribute (name preferred-ip) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-ip) (value unknown))");
+            clips.assertString("(attribute (name preferred-ip) (value no))");
         }
 
         if (PreferredMultipleApps.isSelected()) {
             clips.assertString("(attribute (name preferred-multiple-apps) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-multiple-apps) (value unknown))");
+            clips.assertString("(attribute (name preferred-multiple-apps) (value no))");
         }
 
         if (PreferredBigMemory.isSelected()) {
             clips.assertString("(attribute (name preferred-big-memory) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-big-memory) (value unknown))");
+            clips.assertString("(attribute (name preferred-big-memory) (value no))");
         }
 
         if (PreferredForWatching.isSelected()) {
             clips.assertString("(attribute (name preferred-movies) (value yes))");
         } else {
-            clips.assertString("(attribute (name preferred-movies) (value unknown))");
+            clips.assertString("(attribute (name preferred-movies) (value no))");
         }
 
         Runnable runThread =
