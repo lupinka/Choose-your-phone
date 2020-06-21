@@ -39,7 +39,7 @@ class ChooseYourPhone implements ActionListener {
     JLabel jlab;
 
     String[] PreferredSystemNames = {"Don't Care", "Android", "iOS"};
-    String[] PreferredScreenNames = {"Don't Care", "Less than 5,5'", "More than 5,5"};
+    String[] PreferredScreenNames = {"Don't Care", "Less than 5,5'", "More than 5,5'"};
     String[] PreferredPriceNames = {"Don't Care", "Less than 1000", "1000 to 2000", "More than 2000"};
 
     String[] preferredSystemChoices = new String[3];
@@ -292,12 +292,13 @@ class ChooseYourPhone implements ActionListener {
 
         item = PreferredPriceNames[PreferredPrice.getSelectedIndex()];
         if (item.equals("Less than 1000")) {
-            clips.assertString("(attribute (name preferred-price) (value low))");
+            clips.assertString("(attribute (name preferred-price) (value small))");
         } else if (item.equals("1000 to 2000")) {
             clips.assertString("(attribute (name preferred-price) (value medium))");
         } else if (item.equals("More than 2000")) {
-            clips.assertString("(attribute (name preferred-price) (value high))");
+            clips.assertString("(attribute (name preferred-price) (value big))");
         } else {
+            System.out.println("unknown");
             clips.assertString("(attribute (name preferred-price) (value unknown))");
         }
         /*checkbox rules*/
@@ -387,7 +388,8 @@ class ChooseYourPhone implements ActionListener {
 
             int certainty = ((NumberValue) fv.getSlotValue("certainty")).intValue();
 
-            String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
+            //String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
+            String phoneName = String.valueOf(certainty);
 
             phoneList.addRow(new Object[]{phoneName, certainty});
         }
