@@ -298,7 +298,6 @@ class ChooseYourPhone implements ActionListener {
         } else if (item.equals("More than 2000")) {
             clips.assertString("(attribute (name preferred-price) (value big))");
         } else {
-            System.out.println("unknown");
             clips.assertString("(attribute (name preferred-price) (value unknown))");
         }
         /*checkbox rules*/
@@ -388,8 +387,8 @@ class ChooseYourPhone implements ActionListener {
 
             int certainty = ((NumberValue) fv.getSlotValue("certainty")).intValue();
 
-            //String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
-            String phoneName = String.valueOf(certainty);
+            String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
+            //String phoneName = String.valueOf(certainty);
 
             phoneList.addRow(new Object[]{phoneName, certainty});
         }
