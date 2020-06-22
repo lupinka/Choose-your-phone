@@ -23,7 +23,7 @@
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
-  (modify ?rem2 (certainty (/ (- (* 100 (+ ?per1 ?per2)) (* ?per1 ?per2)) 100))))
+  (modify ?rem2 (certainty (/ (+ ?per1 ?per2) 2))))
   
  
 ;;******************
@@ -96,100 +96,115 @@
 
   ; system
   (rule (if preferred-system is android)
-        (then best-system is android))
+        (then best-system is android and best-system is ios with certainty 0))
   (rule (if preferred-system is ios)
-        (then best-system is ios))
+        (then best-system is ios and best-system is android with certainty 0))
   (rule (if preferred-system is unknown)
-        (then best-system is android with certainty 20 and
-               best-system is ios with certainty 20))
+        (then best-system is android with certainty 50 and
+               best-system is ios with certainty 50))
 
   ; dual-sim
   (rule (if preferred-dual-sim is yes)
-        (then best-dual-sim is yes))
+        (then best-dual-sim is yes and best-dual-sim is no with certainty 0))
   (rule (if preferred-dual-sim is no)
-        (then best-dual-sim is no))
+        (then best-dual-sim is no and best-dual-sim is yes with certainty 0))
   (rule (if preferred-dual-sim is unknown)
-        (then best-dual-sim is yes with certainty 20 and
-               best-dual-sim is no with certainty 20))
+        (then best-dual-sim is yes with certainty 50 and
+               best-dual-sim is no with certainty 50))
 
   ; screen-size
   (rule (if preferred-screen-size is big)
-        (then best-screen-size is big))
+        (then best-screen-size is big and best-screen-size is small with certainty 0))
   (rule (if preferred-screen-size is small)
-        (then best-screen-size is small))
+        (then best-screen-size is small and best-screen-size is big with certainty 0))
   (rule (if preferred-screen-size is unknown)
-        (then best-screen-size is big with certainty 20 and
-                 best-screen-size is small with certainty 20))
+        (then best-screen-size is big with certainty 50 and
+                 best-screen-size is small with certainty 50))
 
   ; price
   (rule (if preferred-price is big)
-          (then best-price is big))
+          (then best-price is big and best-price is small with certainty 0 and best-price is medium with certainty 0))
   (rule (if preferred-price is medium)
-          (then best-price is medium))
+          (then best-price is medium and best-price is small with certainty 0 and best-price is big with certainty 0))
   (rule (if preferred-price is small)
-          (then best-price is small))
+          (then best-price is small and best-price is big with certainty 0 and best-price is medium with certainty 0))
   (rule (if preferred-price is unknown)
-          (then best-price is small with certainty 20 and
-                   best-price is medium with certainty 20 and
-                   best-price is big with certainty 20))
+          (then best-price is small with certainty 50 and
+                   best-price is medium with certainty 50 and
+                   best-price is big with certainty 50))
 
   ; for gamers
   (rule (if preferred-games is yes)
-        (then best-screen-size is big with certainty 80 and
-              best-ram-size is big with certainty 70 and
-              best-battery is big with certainty 80))
-  (rule (if preferred-games is no)
-          (then best-screen-size is big with certainty 1 and
-                best-ram-size is big with certainty 1 and
-                best-battery is big with certainty 1))
+        (then best-screen-size is big with certainty 65 and
+              best-screen-size is small with certainty 35 and
+              best-ram-size is big with certainty 80 and
+              best-ram-size is small with certainty 20 and
+              best-battery is big with certainty 80 and
+              best-battery is small with certainty 20 and
+              best-memory-size is big with certainty 60 and
+              best-memory-size is small with certainty 40))
 
 
   ; for photos
   (rule (if preferred-photos is yes)
           (then best-front-camera is big with certainty 80 and
+                best-front-camera is small with certainty 20 and
                 best-back-camera is big with certainty 90 and
-                best-memory-size is big with certainty 70))
+                best-back-camera is small with certainty 10 and
+                best-memory-size is big with certainty 70 and
+                best-memory-size is small with certainty 30))
   (rule (if preferred-photos is no)
-            (then best-front-camera is big with certainty 20 and
-                  best-front-camera is small with certainty 20 and
-                  best-back-camera is big with certainty 20 and
-                  best-back-camera is small with certainty 20))
+            (then best-front-camera is big with certainty 50 and
+                best-front-camera is small with certainty 50 and
+                best-back-camera is big with certainty 50 and
+                best-back-camera is small with certainty 50 and
+                best-memory-size is big with certainty 50 and
+                best-memory-size is small with certainty 50))
 
   ; capacious battery
   (rule (if preferred-battery is yes)
-            (then best-battery is big))
+            (then best-battery is big and best-battery is small with certainty 0))
   (rule (if preferred-battery is no)
-              (then best-battery is big with certainty 20 and
-                    best-battery is small with certainty 20))
+              (then best-battery is big with certainty 0 and best-battery is small))
 
   ; difficult conditions
   (rule (if preferred-ip is yes)
-              (then best-ip is yes))
+              (then best-ip is yes and best-ip is none with certainty 0))
   (rule (if preferred-ip is no)
-                (then best-ip is none with certainty 40 and
-                    best-ip is yes with certainty 20))
+                (then best-ip is none and best-ip is yes with certainty 0))
 
   ; multiple apps
   (rule (if preferred-multiple-apps is yes)
-              (then best-memory-size is big with certainty 80 and
-                    best-ram-size is big with certainty 60))
+              (then best-memory-size is big with certainty 65 and
+                    best-memory-size is small with certainty 35 and
+                    best-ram-size is big with certainty 80 and
+                    best-ram-size is small with certainty 20))
   (rule (if preferred-multiple-apps is no)
-                (then best-ram-size is small with certainty 20 and
-                      best-ram-size is big with certainty 20))
+                (then best-ram-size is small with certainty 50 and
+                      best-ram-size is big with certainty 50 and
+                      best-memory-size is big with certainty 50 and
+                      best-memory-size is small with certainty 50))
 
   ; big memory
   (rule (if preferred-big-memory is yes)
-                (then best-memory-size is big))
+                (then best-memory-size is big and best-memory-size is small with certainty 0))
   (rule (if preferred-big-memory is no)
-                  (then best-memory-size is small with certainty 20 and
-                  best-memory-size is big with certainty 20))
+                  (then best-memory-size is small and best-memory-size is big with certainty 0))
 
   ; for watching
   (rule (if preferred-movies is yes)
-          (then best-screen-size is big with certainty 80 and
-                best-memory-size is big with certainty 70 and
-                best-battery is big with certainty 70))
+          (then best-screen-size is big with certainty 90 and
+                best-screen-size is small with certainty 10 and
+                best-memory-size is big with certainty 60 and
+                best-memory-size is small with certainty 40 and
+                best-battery is big with certainty 75 and
+                best-battery is small with certainty 25))
 
+  (rule (if preferred-movies is no)
+          (then best-battery is big with certainty 50 and
+                best-battery is small with certainty 50
+                best-memory-size is big with certainty 50 and
+                best-memory-size is small with certainty 50))
 )
 ;;************************
 ;;* PHONE SELECTION RULES *
@@ -363,7 +378,7 @@
   (attribute (name best-screen-size) (value ?scrf) (certainty ?certainty-10))
   =>
   (assert (attribute (name phone) (value ?name)
-                     (certainty (/ (+ (+ (+ (+ (+ (+ (+ (+ ( + ?certainty-1 ?certainty-2) ?certainty-3) ?certainty-4) ?certainty-5)
+                     (certainty (/ (+ (+ (+ (+ (+ (+ (+ (+ (+ ?certainty-1 ?certainty-2) ?certainty-3) ?certainty-4) ?certainty-5)
                      ?certainty-6) ?certainty-7) ?certainty-8) ?certainty-9) ?certainty-10) 10 ))))
 )
 
