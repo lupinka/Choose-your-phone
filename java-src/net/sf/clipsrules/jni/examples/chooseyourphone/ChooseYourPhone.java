@@ -385,8 +385,8 @@ class ChooseYourPhone implements ActionListener {
         for (PrimitiveValue pv : mv) {
             FactAddressValue fv = (FactAddressValue) pv;
 
-            int certainty = ((NumberValue) fv.getSlotValue("certainty")).intValue();
-
+            float certainty = ((NumberValue) fv.getSlotValue("certainty")).floatValue();
+            System.out.println(certainty);
             String phoneName = ((LexemeValue) fv.getSlotValue("value")).getValue();
             //String phoneName = String.valueOf(certainty);
 

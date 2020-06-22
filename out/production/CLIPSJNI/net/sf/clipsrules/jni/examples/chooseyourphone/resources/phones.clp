@@ -100,8 +100,8 @@
   (rule (if preferred-system is ios)
         (then best-system is ios))
   (rule (if preferred-system is unknown)
-        (then best-system is android with certainty 50 and
-               best-system is ios with certainty 50))
+        (then best-system is android with certainty 20 and
+               best-system is ios with certainty 20))
 
   ; dual-sim
   (rule (if preferred-dual-sim is yes)
@@ -138,6 +138,10 @@
         (then best-screen-size is big with certainty 80 and
               best-ram-size is big with certainty 70 and
               best-battery is big with certainty 80))
+  (rule (if preferred-games is no)
+          (then best-screen-size is big with certainty 1 and
+                best-ram-size is big with certainty 1 and
+                best-battery is big with certainty 1))
 
 
   ; for photos
@@ -232,10 +236,8 @@
 
 (deffacts PHONES::the-phone-list
     (phone (name "Xiaomi Redmi Note 8 Pro") (price 999) (system android) (front-camera 20) (back-camera 64) (ram 6) (screen-size 6.53) (dual-sim yes) (ip yes) (battery 4500) (memory 64))
-    (phone (name "Samsung Galaxy A10") (price 699) (system android) (front-camera 5) (back-camera 13) (ram 3) (screen-size 6.2) (dual-sim no) (ip none) (battery 3400) (memory 32))
-    (phone (name "Nokia 5.1 Plus") (price 599) (system android) (front-camera 30) (back-camera 30) (ram 3) (screen-size 4.8) (dual-sim yes) (ip none) (battery 3060) (memory 16))
     (phone (name "Samsung Galaxy A10") (price 699) (system android) (front-camera 5) (back-camera 13) (ram 3) (screen-size 6.2) (dual-sim yes) (ip none) (battery 3400) (memory 32))
-    (phone (name "Nokia 5.1 Plus") (price 599) (system android) (front-camera 8) (back-camera 13) (ram 3) (screen-size 5.8) (dual-sim yes) (ip none) (battery 3060) (memory 16))
+    (phone (name "Nokia 5.1 Plus") (price 599) (system android) (front-camera 8) (back-camera 13) (ram 3) (screen-size 4.8) (dual-sim yes) (ip none) (battery 3060) (memory 16))
     (phone (name "Cavion Base 5.0 LTE") (price 189) (system android) (front-camera 2) (back-camera 5) (ram 1) (screen-size 5.0) (dual-sim yes) (ip none) (battery 1950) (memory 8))
     (phone (name "Huawei Y5") (price 299) (system android) (front-camera 5) (back-camera 8) (ram 2) (screen-size 5.45) (dual-sim yes) (ip none) (battery 3020) (memory 16))
     (phone (name "Xiaomi Redmi 7A") (price 450) (system android) (front-camera 5) (back-camera 13) (ram 2) (screen-size 5.45) (dual-sim yes) (ip none) (battery 4000) (memory 16))
@@ -361,7 +363,8 @@
   (attribute (name best-screen-size) (value ?scrf) (certainty ?certainty-10))
   =>
   (assert (attribute (name phone) (value ?name)
-                     (certainty (min ?certainty-1 ?certainty-2 ?certainty-3 ?certainty-4 ?certainty-5 ?certainty-6 ?certainty-7 ?certainty-8 ?certainty-9 ?certainty-10))))
+                     (certainty (/ (+ (+ (+ (+ (+ (+ (+ (+ ( + ?certainty-1 ?certainty-2) ?certainty-3) ?certainty-4) ?certainty-5)
+                     ?certainty-6) ?certainty-7) ?certainty-8) ?certainty-9) ?certainty-10) 10 ))))
 )
 
 (deffunction PHONES::phone-sort (?w1 ?w2)
