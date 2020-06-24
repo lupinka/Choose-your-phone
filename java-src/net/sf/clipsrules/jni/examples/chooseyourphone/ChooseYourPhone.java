@@ -232,7 +232,8 @@ class ChooseYourPhone implements ActionListener {
         clips = new Environment();
 
         try {
-            clips.loadFromResource("/net/sf/clipsrules/jni/examples/chooseyourphone/resources/phones.clp");
+            clips.loadFromResource("/net/sf/clipsrules/jni/examples" +
+                    "/chooseyourphone/resources/phones.clp");
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -274,11 +275,14 @@ class ChooseYourPhone implements ActionListener {
         item = PreferredSystemNames[preferredSystem.getSelectedIndex()];
 
         if (item.equals("Android")) {
-            clips.assertString("(attribute (name preferred-system) (value android))");
+            clips.assertString("(attribute (name preferred-system) " +
+                    "(value android))");
         } else if (item.equals("iOS")) {
-            clips.assertString("(attribute (name preferred-system) (value ios))");
+            clips.assertString("(attribute (name preferred-system) " +
+                    "(value ios))");
         } else {
-            clips.assertString("(attribute (name preferred-system) (value unknown))");
+            clips.assertString("(attribute (name preferred-system) " +
+                    "(value unknown))");
         }
 
         item = PreferredScreenNames[PreferredScreen.getSelectedIndex()];

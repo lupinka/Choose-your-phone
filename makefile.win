@@ -41,6 +41,14 @@ JNI_FILES = \
 	$(JNI_SRC)\UserFunctionExamples.java \
 	$(JNI_SRC)\VoidValue.java
 
+PHONE_CP = net\sf\clipsrules\jni\examples\chooseyourphone
+PHONE_CLASS = net.sf.clipsrules.jni.examples.chooseyourphone.ChooseYourPhone
+PHONE_SRC = java-src\$(PHONE_CP)
+PHONE_BIN = bin\chooseyourphone
+PHONE_DST = $(PHONE_BIN)\$(PHONE_CP)
+PHONE_RSRC_SRC = $(PHONE_SRC)\resources
+PHONE_RSRC_DST = $(PHONE_BIN)\$(PHONE_CP)\resources
+
 ANIMAL_CP = net\sf\clipsrules\jni\examples\animal
 ANIMAL_CLASS = net.sf.clipsrules.jni.examples.animal.AnimalDemo
 ANIMAL_SRC = java-src\$(ANIMAL_CP)
@@ -120,6 +128,14 @@ clipsjni :
 	javac -d $(JNI_BIN) $(JNI_FILES)
 	jar -cfe CLIPSJNI.jar $(JNI_CLASS) $(JNI_BIN)\$(JNI_CP)\Environment.class -C $(JNI_BIN) net
 
+phone :
+	if not exist $(PHONE_RSRC_DST) mkdir $(PHONE_RSRC_DST)
+	javac -d $(PHONE_BIN) -cp CLIPSJNI.jar $(PHONE_SRC)\ChooseYourPhone.java
+	copy $(PHONE_RSRC_SRC)\*.properties $(PHONE_RSRC_DST)
+	copy $(PHONE_RSRC_SRC)\*.clp $(PHONE_RSRC_DST)
+	jar -cfe ChooseYourPhone.jar $(PHONE_CLASS) $(PHONE_BIN)\$(PHONE_CP)\ChooseYourPhone.class -C $(PHONE_BIN) net
+	jar -uf ChooseYourPhone.jar -C $(JNI_BIN) net
+
 animal :
 	if not exist $(ANIMAL_RSRC_DST) mkdir $(ANIMAL_RSRC_DST)
 	javac -d $(ANIMAL_BIN) -cp CLIPSJNI.jar $(ANIMAL_SRC)\AnimalDemo.java
@@ -133,7 +149,7 @@ auto :
 	javac -d $(AUTO_BIN) -cp CLIPSJNI.jar $(AUTO_SRC)\AutoDemo.java
 	copy $(AUTO_RSRC_SRC)\*.properties $(AUTO_RSRC_DST)
 	copy $(AUTO_RSRC_SRC)\*.clp $(AUTO_RSRC_DST)
-	jar -cfe AutoDemo.jar $(AUTO_CLASS) $(AUTO_BIN)\$(AUTO_CP)\AutoDemo.class -C $(AUTO_BIN) net 
+	jar -cfe AutoDemo.jar $(AUTO_CLASS) $(AUTO_BIN)\$(AUTO_CP)\AutoDemo.class -C $(AUTO_BIN) net
 	jar -uf AutoDemo.jar -C $(JNI_BIN) net
 
 sudoku :
